@@ -489,8 +489,8 @@
 
 
 <!--
-  商品データをこのHTML内に直接記述。
-  product-data.js / product.js に依存しない構成。
+  商品データと表示処理をこのHTML内に直接記述。
+  product-data.js / product.js には依存しない構成。
 -->
 
 <script>
@@ -569,8 +569,6 @@ const PRODUCTS = [
 
 ];
 
-</script>
-
 
 const grid =
   document.getElementById("productGrid");
@@ -643,6 +641,7 @@ function renderProducts() {
           src="${product.image}"
           alt="${product.name}"
           loading="lazy"
+          onerror="this.style.display='none';"
         >
 
       </div>
@@ -823,6 +822,7 @@ filter.addEventListener(
 renderProducts();
 
 </script>
+
 
 </body>
 </html>
