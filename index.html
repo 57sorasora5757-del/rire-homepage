@@ -5,15 +5,201 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="RIRE Total Beauty Salon｜美容と健やかさを、日常の中へ。">
   <title>RIRE｜Total Beauty Salon</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       PRODUCT
+    ========================= */
+
+    .product-section {
+      overflow: hidden;
+    }
+
+    .product-hero {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .product-copy h2 {
+      margin-bottom: 25px;
+    }
+
+    .product-copy > p:not(.eyebrow) {
+      max-width: 520px;
+      line-height: 2;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .product-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .product-sub-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 1px solid #222;
+      color: #222;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    .product-sub-link:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    .catalog-frame {
+      position: relative;
+      background: #f5f5f5;
+      overflow: hidden;
+    }
+
+    .catalog-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .product-note-home {
+      margin-top: 22px;
+      font-size: 12px;
+      line-height: 1.8;
+      color: #777;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .contact-product-note {
+      margin-top: 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+      .product-hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-copy {
+        text-align: center;
+      }
+
+      .product-copy > p:not(.eyebrow) {
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.9;
+      }
+
+      .product-actions {
+        justify-content: center;
+      }
+
+      .product-sub-link {
+        min-height: 46px;
+        padding: 0 18px;
+        font-size: 14px;
+      }
+
+      .catalog-frame {
+        margin-top: 5px;
+      }
+
+      .product-note-home {
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-actions {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-actions .button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .contact-product-note {
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .product-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .product-actions .button,
+      .product-sub-link {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .product-copy > p:not(.eyebrow) {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <header class="header">
-    <a class="logo" href="#top">RIRE<span>Total Beauty Salon</span></a>
-    <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">MENU</button>
+    <a class="logo" href="#top">
+      RIRE<span>Total Beauty Salon</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+    >
+      MENU
+    </button>
+
     <nav class="nav" aria-label="メインナビゲーション">
       <a href="#about">ABOUT</a>
       <a href="#menu">MENU</a>
@@ -25,126 +211,403 @@
   </header>
 
   <main id="top">
+
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-image"></div>
       <div class="hero-overlay"></div>
+
       <div class="hero-copy">
         <p class="eyebrow">TOTAL BEAUTY SALON</p>
-        <h1>美しさを、<br><em>もっと自然に。</em></h1>
-        <p class="hero-lead">外見だけではなく、心とカラダまで心地よく整える。<br>RIREは、あなたの日常に寄り添う美容サロンです。</p>
-        <a class="button button-light" href="#contact">ご予約・お問い合わせ</a>
+
+        <h1>
+          美しさを、<br>
+          <em>もっと自然に。</em>
+        </h1>
+
+        <p class="hero-lead">
+          外見だけではなく、心とカラダまで心地よく整える。<br>
+          RIREは、あなたの日常に寄り添う美容サロンです。
+        </p>
+
+        <a class="button button-light" href="#contact">
+          ご予約・お問い合わせ
+        </a>
       </div>
-      <div class="scroll">SCROLL <span></span></div>
+
+      <div class="scroll">
+        SCROLL <span></span>
+      </div>
     </section>
 
+
+    <!-- ABOUT -->
     <section id="about" class="section about">
-      <div class="section-label">01 / ABOUT</div>
+
+      <div class="section-label">
+        01 / ABOUT
+      </div>
+
       <div class="about-grid">
+
         <div>
           <p class="eyebrow">ABOUT RIRE</p>
-          <h2>あなたが笑顔になれる<br><em>時間を。</em></h2>
-          <p>20代から大手エステサロンに勤務し、愛知県で独立して美容に携わってきたオーナーが、一人ひとりに合わせたケアをご提案します。</p>
-          <p>「キレイになりたい」という気持ちを大切に、外見だけでなくカラダの内側から健やかに。落ち着いた空間で、ゆっくりと自分を整える時間をお過ごしください。</p>
+
+          <h2>
+            あなたが笑顔になれる<br>
+            <em>時間を。</em>
+          </h2>
+
+          <p>
+            20代から大手エステサロンに勤務し、
+            愛知県で独立して美容に携わってきたオーナーが、
+            一人ひとりに合わせたケアをご提案します。
+          </p>
+
+          <p>
+            「キレイになりたい」という気持ちを大切に、
+            外見だけでなくカラダの内側から健やかに。
+            落ち着いた空間で、ゆっくりと自分を整える時間をお過ごしください。
+          </p>
         </div>
+
         <figure class="about-photo">
-          <img src="https://haruka0225.github.io/rire_homepage1/assets/img/me.jpg" alt="RIRE オーナー">
+          <img
+            src="https://haruka0225.github.io/rire_homepage1/assets/img/me.jpg"
+            alt="RIRE オーナー"
+          >
         </figure>
+
       </div>
     </section>
 
+
+    <!-- MENU -->
     <section id="menu" class="section section-soft">
-      <div class="section-label">02 / MENU</div>
+
+      <div class="section-label">
+        02 / MENU
+      </div>
+
       <div class="section-heading">
         <p class="eyebrow">MENU</p>
-        <h2>その日のあなたに、<br><em>ちょうどいいケア。</em></h2>
+
+        <h2>
+          その日のあなたに、<br>
+          <em>ちょうどいいケア。</em>
+        </h2>
       </div>
+
       <div class="menu-list">
-        <article class="menu-item"><div><span>01</span><h3>頭蓋骨ヘッドマッサージ</h3></div><p>30min　¥4,000<br>45min　¥6,000<br>60min　¥8,000</p></article>
-        <article class="menu-item"><div><span>02</span><h3>ヘナカラートリートメント</h3></div><p>¥3,500〜<br><small>※粉代別途</small></p></article>
-        <article class="menu-item"><div><span>03</span><h3>トリストーンドーム</h3></div><p>30min　¥2,500<br><small>赤外線サウナ</small></p></article>
-      </div>
-    </section>
 
-    <section id="treatment" class="section">
-      <div class="section-label">03 / TREATMENT</div>
-      <div class="treatment-grid">
-        <article class="treatment-card">
-          <img src="https://haruka0225.github.io/rire_homepage1/assets/img/head.JPG" alt="頭蓋骨ヘッドマッサージ">
-          <div class="card-body">
-            <p class="eyebrow">HEAD MASSAGE</p>
+        <article class="menu-item">
+          <div>
+            <span>01</span>
             <h3>頭蓋骨ヘッドマッサージ</h3>
-            <p>頭まわりを丁寧にほぐし、リラックスできる時間へ。美容面だけでなく、日々の疲れを感じている方にもおすすめです。</p>
           </div>
+
+          <p>
+            30min　¥4,000<br>
+            45min　¥6,000<br>
+            60min　¥8,000
+          </p>
         </article>
-        <article class="treatment-card">
-          <img src="https://haruka0225.github.io/rire_homepage1/assets/img/sauna.jpg" alt="遠赤外線サウナ">
-          <div class="card-body">
-            <p class="eyebrow">INFRARED SAUNA</p>
+
+        <article class="menu-item">
+          <div>
+            <span>02</span>
+            <h3>ヘナカラートリートメント</h3>
+          </div>
+
+          <p>
+            ¥3,500〜<br>
+            <small>※粉代別途</small>
+          </p>
+        </article>
+
+        <article class="menu-item">
+          <div>
+            <span>03</span>
             <h3>トリストーンドーム</h3>
-            <p>一般的なサウナとは異なる、横になってゆっくり過ごせる赤外線サウナ。温まりながら、心地よくリフレッシュ。</p>
+          </div>
+
+          <p>
+            30min　¥2,500<br>
+            <small>赤外線サウナ</small>
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- TREATMENT -->
+    <section id="treatment" class="section">
+
+      <div class="section-label">
+        03 / TREATMENT
+      </div>
+
+      <div class="treatment-grid">
+
+        <article class="treatment-card">
+
+          <img
+            src="https://haruka0225.github.io/rire_homepage1/assets/img/head.JPG"
+            alt="頭蓋骨ヘッドマッサージ"
+          >
+
+          <div class="card-body">
+
+            <p class="eyebrow">
+              HEAD MASSAGE
+            </p>
+
+            <h3>
+              頭蓋骨ヘッドマッサージ
+            </h3>
+
+            <p>
+              頭まわりを丁寧にほぐし、
+              リラックスできる時間へ。
+              美容面だけでなく、日々の疲れを感じている方にもおすすめです。
+            </p>
+
           </div>
         </article>
+
+
+        <article class="treatment-card">
+
+          <img
+            src="https://haruka0225.github.io/rire_homepage1/assets/img/sauna.jpg"
+            alt="遠赤外線サウナ"
+          >
+
+          <div class="card-body">
+
+            <p class="eyebrow">
+              INFRARED SAUNA
+            </p>
+
+            <h3>
+              トリストーンドーム
+            </h3>
+
+            <p>
+              一般的なサウナとは異なる、
+              横になってゆっくり過ごせる赤外線サウナ。
+              温まりながら、心地よくリフレッシュ。
+            </p>
+
+          </div>
+        </article>
+
       </div>
     </section>
 
+
+    <!-- PRODUCT -->
     <section id="product" class="section product-section">
-      <div class="section-label">04 / PRODUCT</div>
+
+      <div class="section-label">
+        04 / PRODUCT
+      </div>
+
       <div class="product-hero">
+
         <div class="product-copy">
-          <p class="eyebrow">MTG / VITAL LIFE</p>
-          <h2>美容を、<br><em>毎日の習慣へ。</em></h2>
-          <p>RIREでは、エステサロン向けの「MTG VITAL LIFE」に掲載されている美容・セルフケアアイテムを取り扱っています。</p>
-          <a class="button" href="product.html">商品を見る</a>
+
+          <p class="eyebrow">
+            MTG / VITAL LIFE
+          </p>
+
+          <h2>
+            美容を、<br>
+            <em>毎日の習慣へ。</em>
+          </h2>
+
+          <p>
+            RIREでは、エステサロン向けの
+            「MTG VITAL LIFE」に掲載されている
+            美容・セルフケアアイテムを取り扱っています。
+          </p>
+
+          <div class="product-actions">
+
+            <a class="button" href="product.html">
+              商品を見る
+            </a>
+
+            <a class="product-sub-link" href="#contact">
+              商品について相談する
+            </a>
+
+          </div>
+
+          <p class="product-note-home">
+            商品の価格・在庫・ご購入方法などもお気軽にお問い合わせください。
+          </p>
+
         </div>
+
+
         <div class="catalog-frame">
-          <img src="assets/vital-life-catalog.jpg" alt="MTG VITAL LIFE カタログ">
+
+          <img
+            src="assets/vital-life-catalog.jpg"
+            alt="MTG VITAL LIFE カタログ"
+          >
+
         </div>
+
       </div>
     </section>
 
+
+    <!-- STATEMENT -->
     <section class="statement">
+
       <div class="statement-inner">
-        <p class="eyebrow">RIRE</p>
-        <p>「キレイになりたい」を、<br>無理なく、心地よく。</p>
+
+        <p class="eyebrow">
+          RIRE
+        </p>
+
+        <p>
+          「キレイになりたい」を、<br>
+          無理なく、心地よく。
+        </p>
+
       </div>
     </section>
 
+
+    <!-- ACCESS -->
     <section id="access" class="section section-soft">
-      <div class="section-label">05 / ACCESS</div>
+
+      <div class="section-label">
+        05 / ACCESS
+      </div>
+
       <div class="access-grid">
+
         <div>
-          <p class="eyebrow">SHOP INFORMATION</p>
-          <h2>RIRE</h2>
+
+          <p class="eyebrow">
+            SHOP INFORMATION
+          </p>
+
+          <h2>
+            RIRE
+          </h2>
+
           <dl>
-            <div><dt>ADDRESS</dt><dd>愛知県<br>※住所は現在のサイト内容に合わせて入力してください</dd></div>
-            <div><dt>HOURS</dt><dd>営業時間はお問い合わせください</dd></div>
-            <div><dt>RESERVATION</dt><dd>完全予約制</dd></div>
+
+            <div>
+              <dt>ADDRESS</dt>
+              <dd>
+                愛知県<br>
+                ※住所は現在のサイト内容に合わせて入力してください
+              </dd>
+            </div>
+
+            <div>
+              <dt>HOURS</dt>
+              <dd>
+                営業時間はお問い合わせください
+              </dd>
+            </div>
+
+            <div>
+              <dt>RESERVATION</dt>
+              <dd>
+                完全予約制
+              </dd>
+            </div>
+
           </dl>
+
         </div>
+
+
         <div class="access-note">
-          <p>初めての方も、お気軽にお問い合わせください。</p>
-          <a class="button" href="#contact">予約・お問い合わせ</a>
+
+          <p>
+            初めての方も、お気軽にお問い合わせください。
+          </p>
+
+          <a class="button" href="#contact">
+            予約・お問い合わせ
+          </a>
+
         </div>
+
       </div>
     </section>
 
+
+    <!-- CONTACT -->
     <section id="contact" class="contact">
+
       <div class="contact-inner">
-        <p class="eyebrow">06 / CONTACT</p>
-        <h2>ご予約・お問い合わせ</h2>
-        <p>施術についてのご質問や、商品のご相談もお気軽にどうぞ。</p>
+
+        <p class="eyebrow">
+          06 / CONTACT
+        </p>
+
+        <h2>
+          ご予約・お問い合わせ
+        </h2>
+
+        <p>
+          施術についてのご質問や、
+          商品のご相談もお気軽にどうぞ。
+        </p>
+
         <div class="contact-actions">
-          <a class="button button-light" href="mailto:">メールで問い合わせる</a>
-          <a class="button button-outline-light" href="#">Instagram / LINE</a>
+
+          <a
+            class="button button-light"
+            href="mailto:"
+          >
+            メールで問い合わせる
+          </a>
+
+          <a
+            class="button button-outline-light"
+            href="#"
+          >
+            Instagram / LINE
+          </a>
+
         </div>
+
+        <p class="contact-product-note">
+          ReFa商品の価格・在庫・ご購入方法についても、
+          こちらからお気軽にお問い合わせください。
+        </p>
+
       </div>
     </section>
+
   </main>
 
+
   <footer>
-    <div>RIRE</div>
-    <small>© RIRE Total Beauty Salon</small>
+
+    <div>
+      RIRE
+    </div>
+
+    <small>
+      © RIRE Total Beauty Salon
+    </small>
+
   </footer>
+
+
   <script src="script.js"></script>
+
 </body>
 </html>
