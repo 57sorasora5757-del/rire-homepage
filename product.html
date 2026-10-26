@@ -3,52 +3,824 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="description" content="RIRE｜MTG VITAL LIFE 取扱商品・ReFa">
+
   <title>PRODUCT｜RIRE</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .product-toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 34px}.product-search{flex:1;min-width:240px;padding:15px 18px;border:1px solid #ddd;background:#fff;font:inherit}.product-filter{padding:15px 18px;border:1px solid #ddd;background:#fff;font:inherit}.product-card{position:relative}.product-meta{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:.58;margin:8px 0 14px}.product-actions{display:flex;gap:10px;align-items:center;margin-top:20px;flex-wrap:wrap}.official-link{font-size:.78rem;letter-spacing:.06em;text-decoration:underline;text-underline-offset:4px}.catalog-note{margin-top:22px;padding:18px 20px;background:#f7f4ef;font-size:.82rem;line-height:1.8}.empty-state{padding:50px 20px;text-align:center;display:none}.product-card.hidden{display:none}
-  
-    .product-grid{grid-template-columns:repeat(2,1fr)}
-    .product-card{padding:0 0 34px;overflow:hidden}
-    .product-image-wrap{height:320px;background:#fff;display:grid;place-items:center;overflow:hidden}
-    .product-image{width:100%;height:100%;object-fit:contain;padding:20px;mix-blend-mode:multiply}
-    .image-fallback{display:none;place-items:center;width:100%;height:100%;font:40px var(--serif);color:#aaa;background:#eee}
-    .product-card>.product-number,.product-card>.product-meta,.product-card>h3,.product-card>.product-price,.product-card>p,.product-card>.product-actions{margin-left:34px;margin-right:34px}
-    .product-number{margin-top:24px}
-    .product-price{font-size:18px;font-weight:600;letter-spacing:.03em;margin-bottom:12px}
-    .modal-image{width:100%;height:240px;object-fit:contain;background:#fff;margin-bottom:24px}
-    .modal-price{font-size:20px;font-weight:600;margin:8px 0 18px}
-    @media(max-width:760px){.product-grid{grid-template-columns:1fr}.product-image-wrap{height:300px}.product-card>.product-number,.product-card>.product-meta,.product-card>h3,.product-card>.product-price,.product-card>p,.product-card>.product-actions{margin-left:24px;margin-right:24px}}
-</style>
+
+    /* =========================
+       PRODUCT PAGE
+    ========================= */
+
+    .product-toolbar {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:28px 0 34px;
+    }
+
+    .product-search {
+      flex:1;
+      min-width:240px;
+      padding:15px 18px;
+      border:1px solid #ddd;
+      background:#fff;
+      font:inherit;
+    }
+
+    .product-filter {
+      padding:15px 18px;
+      border:1px solid #ddd;
+      background:#fff;
+      font:inherit;
+    }
+
+    .product-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:30px;
+    }
+
+    .product-card {
+      position:relative;
+      padding:0 0 34px;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .product-image-wrap {
+      width:100%;
+      height:320px;
+      background:#f8f7f4;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .product-image {
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:24px;
+      display:block;
+    }
+
+    .product-number,
+    .product-meta,
+    .product-card h3,
+    .product-jp,
+    .product-price,
+    .product-card p,
+    .product-actions {
+      margin-left:34px;
+      margin-right:34px;
+    }
+
+    .product-number {
+      margin-top:24px;
+      font-family:var(--serif);
+      font-size:22px;
+      color:#999;
+    }
+
+    .product-meta {
+      font-size:.75rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      opacity:.58;
+      margin-top:8px;
+      margin-bottom:10px;
+    }
+
+    .product-card h3 {
+      font-size:1.15rem;
+      margin-top:0;
+      margin-bottom:6px;
+    }
+
+    .product-jp {
+      font-size:.82rem;
+      opacity:.65;
+      margin-bottom:16px;
+    }
+
+    .product-price {
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.03em;
+      margin-bottom:12px;
+    }
+
+    .product-card p {
+      font-size:.85rem;
+      line-height:1.9;
+      opacity:.78;
+    }
+
+    .product-actions {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
+
+    .detail-btn {
+      border:0;
+      padding:11px 18px;
+      background:#111;
+      color:#fff;
+      cursor:pointer;
+      font:inherit;
+    }
+
+    .official-link {
+      font-size:.78rem;
+      letter-spacing:.06em;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    .catalog-note {
+      margin-top:22px;
+      padding:18px 20px;
+      background:#f7f4ef;
+      font-size:.82rem;
+      line-height:1.8;
+    }
+
+    .empty-state {
+      padding:50px 20px;
+      text-align:center;
+      display:none;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-image {
+      width:100%;
+      height:240px;
+      object-fit:contain;
+      background:#f8f7f4;
+      margin-bottom:24px;
+    }
+
+    .modal-price {
+      font-size:20px;
+      font-weight:600;
+      margin:8px 0 18px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width:760px){
+
+      .product-grid {
+        grid-template-columns:1fr;
+      }
+
+      .product-image-wrap {
+        height:300px;
+      }
+
+      .product-number,
+      .product-meta,
+      .product-card h3,
+      .product-jp,
+      .product-price,
+      .product-card p,
+      .product-actions {
+        margin-left:24px;
+        margin-right:24px;
+      }
+
+    }
+
+  </style>
 </head>
+
+
 <body class="product-page">
-  <header class="header header-solid">
-    <a class="logo" href="index.html">RIRE<span>Total Beauty Salon</span></a>
-    <nav class="nav nav-visible">
-      <a href="index.html#about">ABOUT</a><a href="index.html#menu">MENU</a><a href="index.html#treatment">TREATMENT</a><a href="#products">PRODUCT</a><a href="index.html#contact">予約・お問い合わせ</a>
-    </nav>
-  </header>
-  <main>
-    <section class="product-cover">
-      <div><p class="eyebrow">MTG / VITAL LIFE</p><h1>Beauty tools for<br><em>your daily life.</em></h1><p>サロンで知る「キレイ」を、日々のセルフケアへ。</p></div>
-      <img src="assets/vital-life-catalog.jpg" alt="MTG VITAL LIFE FOR ESTHETIC SALON 2026.5">
-    </section>
-    <section class="section" id="products">
-      <div class="section-label">PRODUCTS</div>
-      <div class="section-heading"><p class="eyebrow">MTG VITAL LIFE / ReFa</p><h2>取扱商品</h2><p>VITAL LIFE掲載商品の中から、RIREでご案内している商品を掲載しています。</p></div>
-      <div class="product-toolbar"><input id="productSearch" class="product-search" type="search" placeholder="商品名・カテゴリで検索"><select id="productFilter" class="product-filter"><option value="all">すべて</option><option value="ローラー">ローラー</option><option value="美顔器">美顔器</option><option value="光美容器">光美容器</option><option value="シェーバー">シェーバー</option><option value="ヘッドケア">ヘッドケア</option></select></div>
-      <div id="productGrid" class="product-grid"></div>
-      <div id="emptyState" class="empty-state">該当する商品がありません。</div>
-      <div class="catalog-note">※ 商品情報は更新される場合があります。価格・在庫・販売条件はRIREへお問い合わせください。公式商品情報はReFa公式サイトへのリンクから確認できます。</div>
-    </section>
-    <section class="product-cta"><div><p class="eyebrow">RIRE</p><h2>気になる商品は<br>お気軽にご相談ください。</h2><p>価格・在庫・ご注文方法など、詳しくご案内いたします。</p></div><a class="button button-light" href="index.html#contact">お問い合わせ</a></section>
-  </main>
-  <footer><div>RIRE</div><small>© RIRE Total Beauty Salon</small></footer>
-  <div class="modal" id="productModal" aria-hidden="true"><div class="modal-panel"><button class="modal-close" aria-label="閉じる">×</button><img id="modalImage" class="modal-image" src="" alt=""><p class="eyebrow">MTG / VITAL LIFE</p><h2 id="modalTitle">商品名</h2><div id="modalPrice" class="modal-price"></div><p id="modalText">商品についてお問い合わせください。</p><div class="product-actions"><a id="modalOfficial" class="button" href="#" target="_blank" rel="noopener">ReFa公式を見る</a><a class="button" href="index.html#contact">RIREへ問い合わせる</a></div></div></div>
-  <script src="product-data.js"></script><script src="product.js"></script>
+
+
+<header class="header header-solid">
+
+  <a class="logo" href="index.html">
+    RIRE
+    <span>Total Beauty Salon</span>
+  </a>
+
+  <nav class="nav nav-visible">
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#menu">MENU</a>
+    <a href="index.html#treatment">TREATMENT</a>
+    <a href="#products">PRODUCT</a>
+    <a href="index.html#contact">予約・お問い合わせ</a>
+  </nav>
+
+</header>
+
+
+<main>
+
+
+<!-- COVER -->
+
+<section class="product-cover">
+
+  <div>
+
+    <p class="eyebrow">
+      MTG / VITAL LIFE
+    </p>
+
+    <h1>
+      Beauty tools for<br>
+      <em>your daily life.</em>
+    </h1>
+
+    <p>
+      サロンで知る「キレイ」を、日々のセルフケアへ。
+    </p>
+
+  </div>
+
+  <img
+    src="assets/vital-life-catalog.jpg"
+    alt="MTG VITAL LIFE FOR ESTHETIC SALON 2026.5"
+  >
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+  <div class="section-label">
+    PRODUCTS
+  </div>
+
+
+  <div class="section-heading">
+
+    <p class="eyebrow">
+      MTG VITAL LIFE / ReFa
+    </p>
+
+    <h2>
+      取扱商品
+    </h2>
+
+    <p>
+      VITAL LIFE掲載商品の中から、
+      RIREでご案内している商品を掲載しています。
+    </p>
+
+  </div>
+
+
+  <!-- SEARCH -->
+
+  <div class="product-toolbar">
+
+    <input
+      id="productSearch"
+      class="product-search"
+      type="search"
+      placeholder="商品名・カテゴリで検索"
+    >
+
+    <select
+      id="productFilter"
+      class="product-filter"
+    >
+
+      <option value="all">
+        すべて
+      </option>
+
+      <option value="ローラー">
+        ローラー
+      </option>
+
+      <option value="美顔器">
+        美顔器
+      </option>
+
+      <option value="光美容器">
+        光美容器
+      </option>
+
+      <option value="シェーバー">
+        シェーバー
+      </option>
+
+      <option value="ヘッドケア">
+        ヘッドケア
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- PRODUCT GRID -->
+
+  <div
+    id="productGrid"
+    class="product-grid"
+  ></div>
+
+
+  <div
+    id="emptyState"
+    class="empty-state"
+  >
+    該当する商品がありません。
+  </div>
+
+
+  <div class="catalog-note">
+
+    ※ 商品情報は更新される場合があります。
+    価格・在庫・販売条件はRIREへお問い合わせください。
+    公式商品情報は各商品の公式ページからご確認ください。
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="product-cta">
+
+  <div>
+
+    <p class="eyebrow">
+      RIRE
+    </p>
+
+    <h2>
+      気になる商品は<br>
+      お気軽にご相談ください。
+    </h2>
+
+    <p>
+      価格・在庫・ご注文方法など、
+      詳しくご案内いたします。
+    </p>
+
+  </div>
+
+
+  <a
+    class="button button-light"
+    href="index.html#contact"
+  >
+    お問い合わせ
+  </a>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  <div>
+    RIRE
+  </div>
+
+  <small>
+    © RIRE Total Beauty Salon
+  </small>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal"
+  id="productModal"
+  aria-hidden="true"
+>
+
+  <div class="modal-panel">
+
+    <button
+      class="modal-close"
+      aria-label="閉じる"
+    >
+      ×
+    </button>
+
+
+    <img
+      id="modalImage"
+      class="modal-image"
+      src=""
+      alt=""
+    >
+
+
+    <p class="eyebrow">
+      MTG / VITAL LIFE
+    </p>
+
+
+    <h2 id="modalTitle">
+      商品名
+    </h2>
+
+
+    <div
+      id="modalPrice"
+      class="modal-price"
+    ></div>
+
+
+    <p id="modalText">
+      商品についてお問い合わせください。
+    </p>
+
+
+    <div class="product-actions">
+
+      <a
+        id="modalOfficial"
+        class="button"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        ReFa公式を見る
+      </a>
+
+      <a
+        class="button"
+        href="index.html#contact"
+      >
+        RIREへ問い合わせる
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!--
+  商品データをこのHTML内に直接記述。
+  product-data.js / product.js に依存しない構成。
+-->
+
+<script>
+
+const PRODUCTS = [
+
+  {
+    name: "ReFa CARAT LIFT",
+    jp: "リファカラットリフト",
+    category: "ローラー",
+    price: "¥30,800（税込）",
+    desc: "EMSのリフティングとローラーによる引き締めケアを組み合わせた美容ローラー。",
+    image: "https://www.mtgec.jp/shop/item/mtgec/picture/goods/354647_thumbnail.jpg",
+    url: "https://www.refa.net/item/refa_carat_lift/"
+  },
+
+  {
+    name: "ReFa HYDRA CLEAR",
+    jp: "リファハイドラクリア",
+    category: "美顔器",
+    price: "¥27,500（税込）",
+    desc: "水とバブルの力で毛穴まわりをケアするハンディタイプの美容機器。",
+    image: "https://www.refa.net/item/refa_hydra_clear/images/img-hero-sp.jpg",
+    url: "https://www.refa.net/item/refa_hydra_clear/"
+  },
+
+  {
+    name: "ReFa EPI W COOL",
+    jp: "リファエピダブル クール",
+    category: "光美容器",
+    price: "¥121,000（税込）",
+    desc: "ハイパワー照射と冷却機能を組み合わせたReFaの光美容器。",
+    image: "https://www.mtgec.jp/assets/beauty/refa/refa_beautech/epi_series/img/im-modal-cool-sp.jpg",
+    url: "https://www.refa.net/item/refa_epi_w_cool/"
+  },
+
+  {
+    name: "ReFa EPI W",
+    jp: "リファエピダブル",
+    category: "光美容器",
+    price: "¥88,000（税込）",
+    desc: "ハイパワー照射で全身のムダ毛ケアに対応するReFaの光美容器。",
+    image: "https://www.mtgec.jp/assets/beauty/refa/refa_beautech/epi_series/img/im-modal-epi-w-sp.jpg",
+    url: "https://www.refa.net/item/refa_epi_w/"
+  },
+
+  {
+    name: "ReFa MULTI SHAVER",
+    jp: "リファマルチシェーバー",
+    category: "シェーバー",
+    price: "¥7,700（税込）",
+    desc: "I字刃・トリマー刃・ネット刃で、全身のムダ毛をやさしくケアするシェーバー。",
+    image: "https://www.mtgec.jp/img/goods/2/1677620101_299a2cb779484d21a246995fb8c0de71_2.jpg",
+    url: "https://www.refa.net/item/refa_multi_shaver/"
+  },
+
+  {
+    name: "ReFa SKIM SHAVER",
+    jp: "リファスキムシェーバー",
+    category: "シェーバー",
+    price: "¥5,280（税込）",
+    desc: "産毛をやさしくケアし、なめらかな仕上がりを目指すコンパクトシェーバー。",
+    image: "https://www.refa.net/en/item/refa_skim_shaver/images/img-hero-sp.jpg",
+    url: "https://www.refa.net/item/refa_skim_shaver/"
+  },
+
+  {
+    name: "ReFa BEAUTECH HEAD SPA",
+    jp: "リファビューテック ヘッドスパ",
+    category: "ヘッドケア",
+    price: "¥33,000（税込）",
+    desc: "エステティシャンの手技を再現したローラーで、毎日の頭皮ケアをサポート。",
+    image: "https://www.refa.net/en/item/images/OG_98_ReFa_BEAUTECH_HEAD_SPA.jpg",
+    url: "https://www.refa.net/item/refa_beautech_head_spa/"
+  }
+
+];
+
+
+const grid =
+  document.getElementById("productGrid");
+
+const search =
+  document.getElementById("productSearch");
+
+const filter =
+  document.getElementById("productFilter");
+
+const empty =
+  document.getElementById("emptyState");
+
+
+function renderProducts() {
+
+  const keyword =
+    search.value.trim().toLowerCase();
+
+  const category =
+    filter.value;
+
+  grid.innerHTML = "";
+
+  let count = 0;
+
+
+  PRODUCTS.forEach(function(product, index) {
+
+    const searchText =
+      (
+        product.name +
+        product.jp +
+        product.category +
+        product.desc
+      ).toLowerCase();
+
+
+    const keywordMatch =
+      !keyword ||
+      searchText.includes(keyword);
+
+
+    const categoryMatch =
+      category === "all" ||
+      product.category === category;
+
+
+    if (!keywordMatch || !categoryMatch) {
+      return;
+    }
+
+
+    count++;
+
+
+    const card =
+      document.createElement("article");
+
+    card.className =
+      "product-card";
+
+
+    card.innerHTML = `
+
+      <div class="product-image-wrap">
+
+        <img
+          class="product-image"
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <div class="product-number">
+        ${String(index + 1).padStart(2, "0")}
+      </div>
+
+
+      <div class="product-meta">
+        ${product.category}
+      </div>
+
+
+      <h3>
+        ${product.name}
+      </h3>
+
+
+      <div class="product-jp">
+        ${product.jp}
+      </div>
+
+
+      <div class="product-price">
+        ${product.price}
+      </div>
+
+
+      <p>
+        ${product.desc}
+      </p>
+
+
+      <div class="product-actions">
+
+        <button
+          class="detail-btn"
+          type="button"
+        >
+          詳細を見る
+        </button>
+
+
+        <a
+          class="official-link"
+          href="${product.url}"
+          target="_blank"
+          rel="noopener"
+        >
+          公式商品情報 ↗
+        </a>
+
+      </div>
+
+    `;
+
+
+    card
+      .querySelector(".detail-btn")
+      .addEventListener(
+        "click",
+        function() {
+          openModal(product);
+        }
+      );
+
+
+    grid.appendChild(card);
+
+  });
+
+
+  empty.style.display =
+    count === 0 ? "block" : "none";
+
+}
+
+
+const modal =
+  document.getElementById("productModal");
+
+const modalImage =
+  document.getElementById("modalImage");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalPrice =
+  document.getElementById("modalPrice");
+
+const modalText =
+  document.getElementById("modalText");
+
+const modalOfficial =
+  document.getElementById("modalOfficial");
+
+
+function openModal(product) {
+
+  modalImage.src =
+    product.image;
+
+  modalImage.alt =
+    product.name;
+
+  modalTitle.textContent =
+    product.name;
+
+  modalPrice.textContent =
+    product.price;
+
+  modalText.textContent =
+    product.desc;
+
+  modalOfficial.href =
+    product.url;
+
+  modal.classList.add("is-open");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+function closeModal() {
+
+  modal.classList.remove(
+    "is-open"
+  );
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}
+
+
+document
+  .querySelector(".modal-close")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+modal.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target === modal
+    ) {
+      closeModal();
+    }
+
+  }
+);
+
+
+search.addEventListener(
+  "input",
+  renderProducts
+);
+
+
+filter.addEventListener(
+  "change",
+  renderProducts
+);
+
+
+renderProducts();
+
+</script>
+
 </body>
 </html>
