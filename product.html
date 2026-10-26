@@ -11,7 +11,19 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .product-toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 34px}.product-search{flex:1;min-width:240px;padding:15px 18px;border:1px solid #ddd;background:#fff;font:inherit}.product-filter{padding:15px 18px;border:1px solid #ddd;background:#fff;font:inherit}.product-card{position:relative}.product-meta{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:.58;margin:8px 0 14px}.product-actions{display:flex;gap:10px;align-items:center;margin-top:20px;flex-wrap:wrap}.official-link{font-size:.78rem;letter-spacing:.06em;text-decoration:underline;text-underline-offset:4px}.catalog-note{margin-top:22px;padding:18px 20px;background:#f7f4ef;font-size:.82rem;line-height:1.8}.empty-state{padding:50px 20px;text-align:center;display:none}.product-card.hidden{display:none}
-  </style>
+  
+    .product-grid{grid-template-columns:repeat(2,1fr)}
+    .product-card{padding:0 0 34px;overflow:hidden}
+    .product-image-wrap{height:320px;background:#fff;display:grid;place-items:center;overflow:hidden}
+    .product-image{width:100%;height:100%;object-fit:contain;padding:20px;mix-blend-mode:multiply}
+    .image-fallback{display:none;place-items:center;width:100%;height:100%;font:40px var(--serif);color:#aaa;background:#eee}
+    .product-card>.product-number,.product-card>.product-meta,.product-card>h3,.product-card>.product-price,.product-card>p,.product-card>.product-actions{margin-left:34px;margin-right:34px}
+    .product-number{margin-top:24px}
+    .product-price{font-size:18px;font-weight:600;letter-spacing:.03em;margin-bottom:12px}
+    .modal-image{width:100%;height:240px;object-fit:contain;background:#fff;margin-bottom:24px}
+    .modal-price{font-size:20px;font-weight:600;margin:8px 0 18px}
+    @media(max-width:760px){.product-grid{grid-template-columns:1fr}.product-image-wrap{height:300px}.product-card>.product-number,.product-card>.product-meta,.product-card>h3,.product-card>.product-price,.product-card>p,.product-card>.product-actions{margin-left:24px;margin-right:24px}}
+</style>
 </head>
 <body class="product-page">
   <header class="header header-solid">
@@ -28,7 +40,7 @@
     <section class="section" id="products">
       <div class="section-label">PRODUCTS</div>
       <div class="section-heading"><p class="eyebrow">MTG VITAL LIFE / ReFa</p><h2>取扱商品</h2><p>VITAL LIFE掲載商品の中から、RIREでご案内している商品を掲載しています。</p></div>
-      <div class="product-toolbar"><input id="productSearch" class="product-search" type="search" placeholder="商品名・カテゴリで検索"><select id="productFilter" class="product-filter"><option value="all">すべて</option><option value="ローラー">ローラー</option><option value="美顔器">美顔器</option><option value="ムダ毛ケア">ムダ毛ケア</option><option value="ヘッドケア">ヘッドケア</option><option value="カタログ掲載">カタログ掲載</option></select></div>
+      <div class="product-toolbar"><input id="productSearch" class="product-search" type="search" placeholder="商品名・カテゴリで検索"><select id="productFilter" class="product-filter"><option value="all">すべて</option><option value="ローラー">ローラー</option><option value="美顔器">美顔器</option><option value="光美容器">光美容器</option><option value="シェーバー">シェーバー</option><option value="ヘッドケア">ヘッドケア</option></select></div>
       <div id="productGrid" class="product-grid"></div>
       <div id="emptyState" class="empty-state">該当する商品がありません。</div>
       <div class="catalog-note">※ 商品情報は更新される場合があります。価格・在庫・販売条件はRIREへお問い合わせください。公式商品情報はReFa公式サイトへのリンクから確認できます。</div>
@@ -36,7 +48,7 @@
     <section class="product-cta"><div><p class="eyebrow">RIRE</p><h2>気になる商品は<br>お気軽にご相談ください。</h2><p>価格・在庫・ご注文方法など、詳しくご案内いたします。</p></div><a class="button button-light" href="index.html#contact">お問い合わせ</a></section>
   </main>
   <footer><div>RIRE</div><small>© RIRE Total Beauty Salon</small></footer>
-  <div class="modal" id="productModal" aria-hidden="true"><div class="modal-panel"><button class="modal-close" aria-label="閉じる">×</button><p class="eyebrow">MTG / VITAL LIFE</p><h2 id="modalTitle">商品名</h2><p id="modalText">商品についてお問い合わせください。</p><div class="product-actions"><a id="modalOfficial" class="button" href="#" target="_blank" rel="noopener">ReFa公式を見る</a><a class="button" href="index.html#contact">RIREへ問い合わせる</a></div></div></div>
+  <div class="modal" id="productModal" aria-hidden="true"><div class="modal-panel"><button class="modal-close" aria-label="閉じる">×</button><img id="modalImage" class="modal-image" src="" alt=""><p class="eyebrow">MTG / VITAL LIFE</p><h2 id="modalTitle">商品名</h2><div id="modalPrice" class="modal-price"></div><p id="modalText">商品についてお問い合わせください。</p><div class="product-actions"><a id="modalOfficial" class="button" href="#" target="_blank" rel="noopener">ReFa公式を見る</a><a class="button" href="index.html#contact">RIREへ問い合わせる</a></div></div></div>
   <script src="product-data.js"></script><script src="product.js"></script>
 </body>
 </html>

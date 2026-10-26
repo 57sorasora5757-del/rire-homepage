@@ -96,7 +96,7 @@ footer small{font:9px var(--sans);letter-spacing:.12em}
 .product-cta h2{font-size:clamp(40px,5vw,65px)}
 .product-cta p:not(.eyebrow){color:#cfc8c0}
 .modal{position:fixed;inset:0;background:rgba(20,18,16,.62);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
-.modal.open{display:flex}
+.modal.is-open{display:flex}
 .modal-panel{position:relative;background:var(--paper);padding:55px;max-width:520px;width:100%}
 .modal-close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:28px;cursor:pointer}
 @media(max-width:760px){
