@@ -1,71 +1,189 @@
-const VITAL_LIFE_PRODUCTS = [
-  {
-    name: 'ReFa CARAT LIFT',
-    jp: 'リファカラットリフト',
-    category: 'ローラー',
-    price: '¥30,800（税込）',
-    desc: 'EMSのリフティングとローラーによる引き締めケアを組み合わせた美容ローラー。',
-    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/354647_thumbnail.jpg',
-    url: 'https://www.refa.net/item/refa_carat_lift/'
-  },
+const grid = document.getElementById('productGrid');
+const search = document.getElementById('productSearch');
+const filter = document.getElementById('productFilter');
+const empty = document.getElementById('emptyState');
 
-  {
-    name: 'ReFa HYDRA CLEAR',
-    jp: 'リファハイドラクリア',
-    category: '美顔器',
-    price: '¥27,500（税込）',
-    desc: '水とバブルの力で毛穴まわりをケアするハンディタイプの美容機器。',
-    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/354000_thumbnail.jpg',
-    url: 'https://www.refa.net/item/refa_hydra_clear/'
-  },
+const modal = document.getElementById('productModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const modalPrice = document.getElementById('modalPrice');
+const modalImage = document.getElementById('modalImage');
+const modalOfficial = document.getElementById('modalOfficial');
 
-  {
-    name: 'ReFa EPI W COOL',
-    jp: 'リファエピダブル クール',
-    category: '光美容器',
-    price: '¥121,000（税込）',
-    desc: 'ハイパワー照射と美肌冷却を組み合わせたReFaの光美容器。',
-    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/572000_thumbnail.jpg',
-    url: 'https://www.mtgec.jp/shop/pages/refa_epi_w_cool.aspx'
-  },
+function createProductImage(product) {
 
-  {
-    name: 'ReFa EPI W',
-    jp: 'リファエピダブル',
-    category: '光美容器',
-    price: '¥88,000（税込）',
-    desc: 'ハイパワー照射で全身のムダ毛ケアに対応するReFaの光美容器。',
-    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/500000_thumbnail.jpg',
-    url: 'https://www.refa.net/item/refa_epi_w/'
-  },
+  const wrap = document.createElement('div');
+  wrap.className = 'product-image-wrap';
 
-  {
-    name: 'ReFa MULTI SHAVER',
-    jp: 'リファマルチシェーバー',
-    category: 'シェーバー',
-    price: '¥7,700（税込）',
-    desc: 'I字刃・トリマー刃・ネット刃で、全身のムダ毛をやさしくケアするシェーバー。',
-    image: 'https://www.mtgec.jp/img/goods/2/1677620101_299a2cb779484d21a246995fb8c0de71_2.jpg',
-    url: 'https://www.mtgec.jp/shop/g/g1677620101/'
-  },
+  const img = document.createElement('img');
+  img.className = 'product-image';
+  img.alt = product.name;
+  img.loading = 'lazy';
 
-  {
-    name: 'ReFa SKIM SHAVER',
-    jp: 'リファスキムシェーバー',
-    category: 'シェーバー',
-    price: '¥5,280（税込）',
-    desc: '産毛をやさしくケアし、なめらかな仕上がりを目指すコンパクトシェーバー。',
-    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/00000000.jpg',
-    url: 'https://www.refa.net/item/refa_skim_shaver/'
-  },
+  const fallback = document.createElement('div');
+  fallback.className = 'image-fallback';
 
-  {
-    name: 'ReFa BEAUTECH HEAD SPA',
-    jp: 'リファビューテック ヘッドスパ',
-    category: 'ヘッドケア',
-    price: '¥33,000（税込）',
-    desc: 'エステティシャンの手技を再現したローラーで、毎日の頭皮ケアをサポート。',
-    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/00000000.jpg',
-    url: 'https://www.mtgec.jp/shop/pages/refa_headspa.aspx'
+  fallback.innerHTML = `
+    <div>
+      <strong>ReFa</strong>
+      <span>${product.jp}</span>
+    </div>
+  `;
+
+  img.src = product.image;
+
+  img.addEventListener('error', function () {
+    img.style.display = 'none';
+    fallback.style.display = 'grid';
+  });
+
+  wrap.appendChild(img);
+  wrap.appendChild(fallback);
+
+  return wrap;
+}
+
+
+function render() {
+
+  const q = search.value.trim().toLowerCase();
+  const f = filter.value;
+
+  grid.innerHTML = '';
+
+  let count = 0;
+
+  VITAL_LIFE_PRODUCTS.forEach((p, i) => {
+
+    const text = `
+      ${p.name}
+      ${p.jp}
+      ${p.category}
+      ${p.desc}
+    `.toLowerCase();
+
+    const hit = !q || text.includes(q);
+    const categoryMatch = f === 'all' || p.category === f;
+
+    if (!hit || !categoryMatch) {
+      return;
+    }
+
+    count++;
+
+    const card = document.createElement('article');
+    card.className = 'product-card';
+
+    const image = createProductImage(p);
+
+    card.appendChild(image);
+
+    const number = document.createElement('div');
+    number.className = 'product-number';
+    number.textContent = String(i + 1).padStart(2, '0');
+
+    const meta = document.createElement('div');
+    meta.className = 'product-meta';
+    meta.textContent = p.category;
+
+    const title = document.createElement('h3');
+    title.textContent = p.name;
+
+    const jp = document.createElement('div');
+    jp.className = 'product-jp';
+    jp.textContent = p.jp;
+
+    const price = document.createElement('div');
+    price.className = 'product-price';
+    price.textContent = p.price;
+
+    const description = document.createElement('p');
+    description.textContent = p.desc;
+
+    const actions = document.createElement('div');
+    actions.className = 'product-actions';
+
+    const detailButton = document.createElement('button');
+    detailButton.className = 'detail-btn';
+    detailButton.type = 'button';
+    detailButton.textContent = '詳細を見る';
+
+    detailButton.addEventListener('click', function () {
+      openModal(p);
+    });
+
+    const official = document.createElement('a');
+    official.className = 'official-link';
+    official.href = p.url;
+    official.target = '_blank';
+    official.rel = 'noopener noreferrer';
+    official.textContent = '公式商品情報 ↗';
+
+    actions.appendChild(detailButton);
+    actions.appendChild(official);
+
+    card.appendChild(number);
+    card.appendChild(meta);
+    card.appendChild(title);
+    card.appendChild(jp);
+    card.appendChild(price);
+    card.appendChild(description);
+    card.appendChild(actions);
+
+    grid.appendChild(card);
+  });
+
+  empty.style.display = count ? 'none' : 'block';
+}
+
+
+function openModal(p) {
+
+  modalTitle.textContent = p.name;
+  modalText.textContent = p.desc;
+  modalPrice.textContent = p.price;
+
+  modalImage.src = p.image;
+  modalImage.alt = p.name;
+
+  modalOfficial.href = p.url;
+
+  modal.setAttribute('aria-hidden', 'false');
+  modal.classList.add('is-open');
+}
+
+
+function closeModal() {
+
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+
+search.addEventListener('input', render);
+
+filter.addEventListener('change', render);
+
+document
+  .querySelector('.modal-close')
+  .addEventListener('click', closeModal);
+
+modal.addEventListener('click', function (e) {
+
+  if (e.target === modal) {
+    closeModal();
   }
-];
+
+});
+
+
+document.addEventListener('keydown', function (e) {
+
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+
+});
+
+
+render();
