@@ -1,35 +1,71 @@
-const grid=document.getElementById('productGrid');
-const search=document.getElementById('productSearch');
-const filter=document.getElementById('productFilter');
-const empty=document.getElementById('emptyState');
-const modal=document.getElementById('productModal');
-const modalTitle=document.getElementById('modalTitle');
-const modalText=document.getElementById('modalText');
-const modalPrice=document.getElementById('modalPrice');
-const modalImage=document.getElementById('modalImage');
-const modalOfficial=document.getElementById('modalOfficial');
-function render(){
- const q=search.value.trim().toLowerCase(); const f=filter.value;
- grid.innerHTML=''; let count=0;
- VITAL_LIFE_PRODUCTS.forEach((p,i)=>{
-   const hit=!q || `${p.name} ${p.jp} ${p.category} ${p.desc}`.toLowerCase().includes(q);
-   const cat=f==='all'||p.category===f; if(!hit||!cat)return; count++;
-   const card=document.createElement('article'); card.className='product-card';
-   card.innerHTML=`
-    <div class="product-image-wrap"><img class="product-image" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="image-fallback">ReFa</div></div>
-    <div class="product-number">${String(i+1).padStart(2,'0')}</div>
-    <div class="product-meta">${p.category}</div>
-    <h3>${p.name}</h3>
-    <div class="product-price">${p.price}</div>
-    <p>${p.desc}</p>
-    <div class="product-actions"><button class="detail-btn">詳細を見る</button><a class="official-link" href="${p.url}" target="_blank" rel="noopener">公式商品情報 ↗</a></div>`;
-   card.querySelector('.detail-btn').addEventListener('click',()=>openModal(p)); grid.appendChild(card);
- }); empty.style.display=count?'none':'block';
-}
-function openModal(p){
- modalTitle.textContent=p.name; modalText.textContent=p.desc; modalPrice.textContent=p.price; modalImage.src=p.image; modalImage.alt=p.name; modalOfficial.href=p.url;
- modal.setAttribute('aria-hidden','false'); modal.classList.add('is-open');
-}
-function closeModal(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');}
-search.addEventListener('input',render);filter.addEventListener('change',render);document.querySelector('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-render();
+const VITAL_LIFE_PRODUCTS = [
+  {
+    name: 'ReFa CARAT LIFT',
+    jp: 'リファカラットリフト',
+    category: 'ローラー',
+    price: '¥30,800（税込）',
+    desc: 'EMSのリフティングとローラーによる引き締めケアを組み合わせた美容ローラー。',
+    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/354647_thumbnail.jpg',
+    url: 'https://www.refa.net/item/refa_carat_lift/'
+  },
+
+  {
+    name: 'ReFa HYDRA CLEAR',
+    jp: 'リファハイドラクリア',
+    category: '美顔器',
+    price: '¥27,500（税込）',
+    desc: '水とバブルの力で毛穴まわりをケアするハンディタイプの美容機器。',
+    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/354000_thumbnail.jpg',
+    url: 'https://www.refa.net/item/refa_hydra_clear/'
+  },
+
+  {
+    name: 'ReFa EPI W COOL',
+    jp: 'リファエピダブル クール',
+    category: '光美容器',
+    price: '¥121,000（税込）',
+    desc: 'ハイパワー照射と美肌冷却を組み合わせたReFaの光美容器。',
+    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/572000_thumbnail.jpg',
+    url: 'https://www.mtgec.jp/shop/pages/refa_epi_w_cool.aspx'
+  },
+
+  {
+    name: 'ReFa EPI W',
+    jp: 'リファエピダブル',
+    category: '光美容器',
+    price: '¥88,000（税込）',
+    desc: 'ハイパワー照射で全身のムダ毛ケアに対応するReFaの光美容器。',
+    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/500000_thumbnail.jpg',
+    url: 'https://www.refa.net/item/refa_epi_w/'
+  },
+
+  {
+    name: 'ReFa MULTI SHAVER',
+    jp: 'リファマルチシェーバー',
+    category: 'シェーバー',
+    price: '¥7,700（税込）',
+    desc: 'I字刃・トリマー刃・ネット刃で、全身のムダ毛をやさしくケアするシェーバー。',
+    image: 'https://www.mtgec.jp/img/goods/2/1677620101_299a2cb779484d21a246995fb8c0de71_2.jpg',
+    url: 'https://www.mtgec.jp/shop/g/g1677620101/'
+  },
+
+  {
+    name: 'ReFa SKIM SHAVER',
+    jp: 'リファスキムシェーバー',
+    category: 'シェーバー',
+    price: '¥5,280（税込）',
+    desc: '産毛をやさしくケアし、なめらかな仕上がりを目指すコンパクトシェーバー。',
+    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/00000000.jpg',
+    url: 'https://www.refa.net/item/refa_skim_shaver/'
+  },
+
+  {
+    name: 'ReFa BEAUTECH HEAD SPA',
+    jp: 'リファビューテック ヘッドスパ',
+    category: 'ヘッドケア',
+    price: '¥33,000（税込）',
+    desc: 'エステティシャンの手技を再現したローラーで、毎日の頭皮ケアをサポート。',
+    image: 'https://www.mtgec.jp/shop/item/mtgec/picture/goods/00000000.jpg',
+    url: 'https://www.mtgec.jp/shop/pages/refa_headspa.aspx'
+  }
+];
