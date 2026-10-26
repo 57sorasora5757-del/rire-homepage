@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RIRE｜MTG VITAL LIFE 取扱商品">
+  <title>PRODUCT｜RIRE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+  <header class="header header-solid">
+    <a class="logo" href="index.html">RIRE<span>Total Beauty Salon</span></a>
+    <nav class="nav nav-visible">
+      <a href="index.html#about">ABOUT</a>
+      <a href="index.html#menu">MENU</a>
+      <a href="index.html#treatment">TREATMENT</a>
+      <a href="#products">PRODUCT</a>
+      <a href="index.html#contact">予約・お問い合わせ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="product-cover">
+      <div>
+        <p class="eyebrow">MTG / VITAL LIFE</p>
+        <h1>Beauty tools for<br><em>your daily life.</em></h1>
+        <p>サロンで知る「キレイ」を、日々のセルフケアへ。</p>
+      </div>
+      <img src="assets/vital-life-catalog.jpg" alt="MTG VITAL LIFE">
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-label">PRODUCTS</div>
+      <div class="section-heading">
+        <p class="eyebrow">MTG VITAL LIFE</p>
+        <h2>取扱商品</h2>
+        <p>掲載されている商品について、詳しい仕様・在庫・価格はRIREまでお問い合わせください。</p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-number">01</div>
+          <h3>ReFa CARAT RAY</h3>
+          <p>フェイス・ボディをケアするローラータイプの美容アイテム。</p>
+          <button class="detail-btn" data-product="ReFa CARAT RAY">詳細を見る</button>
+        </article>
+        <article class="product-card">
+          <div class="product-number">02</div>
+          <h3>ReFa HYDRA CLEAR</h3>
+          <p>水と泡で、毎日のセルフケアを心地よく。</p>
+          <button class="detail-btn" data-product="ReFa HYDRA CLEAR">詳細を見る</button>
+        </article>
+        <article class="product-card">
+          <div class="product-number">03</div>
+          <h3>ReFa EPI COOL</h3>
+          <p>冷却機能を備えたムダ毛ケアのアイテム。</p>
+          <button class="detail-btn" data-product="ReFa EPI COOL">詳細を見る</button>
+        </article>
+        <article class="product-card">
+          <div class="product-number">04</div>
+          <h3>ReFa EW</h3>
+          <p>毎日のボディケアをサポートする美容機器。</p>
+          <button class="detail-btn" data-product="ReFa EW">詳細を見る</button>
+        </article>
+        <article class="product-card">
+          <div class="product-number">05</div>
+          <h3>ReFa MULTI SHAVER</h3>
+          <p>全身のムダ毛をやさしく、効率よくケア。</p>
+          <button class="detail-btn" data-product="ReFa MULTI SHAVER">詳細を見る</button>
+        </article>
+        <article class="product-card">
+          <div class="product-number">06</div>
+          <h3>ReFa FACE SHAVER</h3>
+          <p>顔まわりの細かなムダ毛をすっきりケア。</p>
+          <button class="detail-btn" data-product="ReFa FACE SHAVER">詳細を見る</button>
+        </article>
+        <article class="product-card">
+          <div class="product-number">07</div>
+          <h3>ReFa BEAUTECH HEAD SPA</h3>
+          <p>頭皮を心地よく刺激し、ホームケアを充実。</p>
+          <button class="detail-btn" data-product="ReFa BEAUTECH HEAD SPA">詳細を見る</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-cta">
+      <div>
+        <p class="eyebrow">RIRE</p>
+        <h2>気になる商品は<br>お気軽にご相談ください。</h2>
+        <p>価格・在庫・ご注文方法など、詳しくご案内いたします。</p>
+      </div>
+      <a class="button button-light" href="index.html#contact">お問い合わせ</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>RIRE</div>
+    <small>© RIRE Total Beauty Salon</small>
+  </footer>
+
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="閉じる">×</button>
+      <p class="eyebrow">MTG / VITAL LIFE</p>
+      <h2 id="modalTitle">商品名</h2>
+      <p>この商品についての詳しい仕様・価格・在庫は、RIREまでお問い合わせください。</p>
+      <a class="button" href="index.html#contact">商品について問い合わせる</a>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
